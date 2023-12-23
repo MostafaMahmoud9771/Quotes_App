@@ -59,14 +59,21 @@ var quotes = [
   },
 ];
 
+var randomNums = [];
+
 function generateQuote() {
   var randomNumberGenerator = Math.floor(Math.random() * quotes.length);
 
+  if (randomNums.length !== 0) {
+    while (randomNumberGenerator == randomNums[randomNums.length - 1]) {
+      randomNumberGenerator = Math.floor(Math.random() * quotes.length);
+    }
+  }
   document.getElementById("theQuote").innerHTML =
     quotes[randomNumberGenerator].quote;
 
   document.getElementById("theAuthor").innerHTML =
     quotes[randomNumberGenerator].author;
 
-  quotes.reverse();
+  randomNums.push(randomNumberGenerator);
 }
